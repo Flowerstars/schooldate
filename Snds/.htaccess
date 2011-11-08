@@ -1,0 +1,8 @@
+#Rewrite engine on
+RewriteEngine on
+
+RewriteRule ^account/([A-Za-z0-9\-]+)(/([A-Za-z0-9\-]+))?$ index.php?view=account&page=$1&id=$3
+RewriteRule ^profile(/([A-Za-z0-9\-]+))?$ index.php?view=profile&username=$2
+
+# Rewrite /everything to index.php
+RewriteRule ^([A-Za-z0-9\-]+)(/([A-Za-z0-9\-]+))?$ index.php?view=$1&id=$3
