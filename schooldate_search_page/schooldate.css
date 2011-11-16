@@ -1,0 +1,1506 @@
+/**************************************
+
+Name: Schooldate
+Author: Ward Peeters (http://www.coding-tech.com)
+
+Written for http://www.schooldate.com
+
+**************************************/
+
+/* Reset CSS
+---------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, textarea { 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+
+body {
+    line-height: 1;
+}
+
+#master {
+opacity:0;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+@font-face {
+    font-family: Bebas;
+    src: url('bebas.ttf');
+}
+@font-face {
+    font-family: "Myriad Pro";
+    src: url('MyriadPro.otf');
+}
+
+/* General CSS
+---------------------------------------------------------*/
+body {
+    background: #fff;
+    
+    font-family: Tahoma,Geneva,Kalimati,sans-serif;
+    font-size: 0.625em;
+    line-height: 1.8em;
+}
+.container {
+    width: 950px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    position: relative;
+}
+.black {
+    background: #131313;
+}
+.gray {
+    background: #f2f2f2;
+    padding: 10px;
+
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+.georgia {
+    font-family: Georgia, "Nimbus Roman No9 L", serif;
+    font-size: 1.4em;
+}
+.arial, input {
+    font-family: Arial, Helvetiva, Garuda, sans-serif;
+}
+.buttons {
+    overflow: hidden;
+}
+.buttons input {
+    cursor: pointer;
+}
+
+h1, h2, h3 {
+    font-family: "Myriad Pro";
+    color: #fd1382;
+    font-size: 25px;
+    line-height: 1.2em;
+}
+h1 span, h2 span, h3 span {
+    color: #63c5e2;
+}
+
+/*
+#uniScroll {
+height: 227px;
+width: 285px;
+overflow:auto;
+
+
+
+}
+*/
+
+/* HEADER CSS
+---------------------------------------------------------*/
+header {
+    height: 121px;
+    margin: 0 0 25px;
+    overflow: hidden;
+}
+
+header .container {
+    height: 100%;    
+}
+
+/*
+header .container {
+    	position: fixed;
+    	top: 0px;
+    	left: 10%;
+    	right:10%;
+	z-index:999;
+    height: 100px;
+    display: block;
+    background-color: #000;
+    
+}
+*/
+.logo, .buttons input, .facebook, .twitter, #ainbox #received, #ainbox #sent {
+    background: url(schooldate.jpg) no-repeat;
+    width: 215px; height: 76px;
+    margin: 25px 0 0 20px;
+    display: block;
+
+    text-indent: -9999px;
+}
+#login {
+    margin: 25px 0 0;
+
+    position: absolute;
+    top: 0; right: 0;
+}
+#login div {
+    margin: 0 0 0 10px;
+    float: left;
+}
+#login label {
+    margin: 0 0 10px;
+    display: block;
+
+    color: #8e8e8e;
+    font-size: 10px;
+}
+#login input {
+    width: 180px; height: 29px;
+    padding: 0 5px;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    line-height: 29px;
+    font-size: 11px;
+}
+#login .keeplogin {
+    margin: 10px 0 0;
+    float: none;
+}
+#login .keeplogin label {
+    display: inline;
+}
+#login .keeplogin input {
+    width: auto; height: auto;
+}
+#login #password {
+    width: 103px;
+}
+#login a {
+    margin: 10px 0 0;
+    display: block;
+
+    color: #1d6074;
+    font-size: 10px;
+    text-decoration: none;
+}
+#login .buttons {
+    margin: 28px 0 0 5px;
+}
+#login .buttons input {
+    background-position: 0 -108px;
+    width: 67px; height: 29px;
+    margin: 0; padding: 0;
+
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+/** NAV **/
+header nav {
+    position: absolute;
+    top: 50px; right: 0;
+}
+header li {
+    margin: 0 5px 0 0;
+    float: left;
+}
+header li a, .button, #newmessagebox .button {
+    height: 33px;
+    padding: 0 15px;
+    display: block;
+    line-height: 31px;
+
+    color: #fff;
+    font-family: Bebas, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.popular, .popular:hover, .button {
+    background: #fd1382;
+
+     border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+header li a:hover, .hactive, .pactive, .sactive, .iactive, .cactive, .mactive, .dactive {
+    background: url(schooldate.jpg) repeat-x 0 -174px;
+    
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+/* HOME CSS
+---------------------------------------------------------*/
+.home h2.underline {
+    margin: 30px 0 15px; padding: 0 0 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.home .col1 {
+    width: 565px;
+    margin-right: 10px;
+    float: left;
+}
+.underheader {
+    margin: 15px 0 0;
+
+    color: #8a8a8a;
+    font-size: 11px;
+}
+
+/** HOME FORM **/
+.home form {
+    font-size: 14px;
+}
+.home .border {
+    height: 39px;
+    padding: 10px 8px;
+    border: 1px solid #f1f1f1; border-left: none; border-right: none;
+}
+.home form div, .youraccount form div {
+    margin: 10px 0; padding: 0 8px;
+}
+.home form label, .youraccount form label {
+    width: 75px; height: 37px;
+    display: block;
+    float: left;
+
+    line-height: 37px;
+}
+.home form input, .home .selectBox, .account .selectBox, .youraccount form input, #newmessagebox input {
+    background: url(schooldate.jpg) repeat-x 0 -137px;
+    width: 280px; height: 37px;
+    padding: 0 5px;
+    border: 1px solid #d2d2d2;
+
+    color: #9c9c9c;
+    font-size: 12px;
+    line-height: 37px;
+}
+.home .buttons input {
+    background-position: -67px -108px;
+    width: 72px; height: 29px;
+    margin: 0 0 0 auto; padding: 0;
+    border :none;
+}
+.home .required {
+    color: #161616;
+    font-size: 10px;
+}
+.home .required a {
+    color: #2ab0d7;
+}
+
+/** FANCY SELECT */
+.home .border label {
+    width: auto;
+    margin: 0 10px;
+}
+.home .tzSelect {
+    width: 100px;
+    margin: 0; padding: 0;
+    display: block;
+    float: left;
+
+    position: relative;
+}
+.home .selectBox {
+    width: 90px;
+    margin: 0;
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+.home .dropDown {
+    background: #fff;
+    border: 1px solid #d2d2d2;
+
+    position: absolute;
+    top: 38px;
+}
+.tzSelect li, .szSmall li {
+    background: #fff;
+    width: 90px;
+    padding: 5px;
+    display: block;
+    cursor: pointer;
+
+    font-size: 11px;
+}
+.tzSelect li:hover, .szSmall li:hover, #newmessagebox li:hover {
+    background: #eee;
+}
+
+/* ACCOUNT CSS
+---------------------------------------------------------*/
+.account section {
+    background: #f2f2f2;
+    padding: 10px;
+
+   /* position: relative;*/
+    
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+.account  header {
+    height: auto;
+    margin: 0;
+}
+#updates, #mchat, #profile {
+    margin-left: 325px; padding: 0;
+}
+#updates .message {
+
+    overflow: hidden;
+    clear: right;
+
+}
+.message img {
+    margin: 0 10px 0 0;
+    display: block;
+    float: left;
+}
+.message .quote {
+    margin: 2px 0; padding: 0 0 0 120px;
+    line-height: 1.7em;
+
+    color: #8a8a8a;
+    font-size: 1.2em;
+}
+.message .quote span, .message .tag, .message .tag span {
+    background: url(schooldate.jpg) no-repeat 0 -229px;
+    width: 19px; height: 16px;
+    margin: 3px 0 0 -25px;
+    display: block;
+    float: left;
+}
+.message .tag, #profile .message .tag {
+    background-position: 0 -245px;
+    background-repeat: repeat-x;
+    width: 435px; height: 30px;
+    margin: 10px 0 0; padding: 0 15px 0 40px;
+    border: 1px solid #ffe0ef;
+    line-height: 30px;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #8a8a8a;
+    font-size: 1.2em;
+}
+.message .tag span {
+    background: url(schooldate.jpg) no-repeat 0 -207px;
+    width: 22px; height: 22px;
+    margin: 5px 0 0 -30px;
+}
+.letsdoit {
+    background: #fd1382;
+    margin: 10px 0;
+    float: right;
+}
+
+/* HOME ACCOUNT CSS
+---------------------------------------------------------*/
+#ahome {
+    min-height: 900px;
+    overflow: hidden;
+}
+#ahome aside {
+    width: 315px;
+    float: left;
+
+    position: static;
+}
+#ahome header {
+    margin: 0 0 10px;
+}
+#ahome header h2 {
+    float: left;
+}
+aside {
+    position: absolute;
+}
+aside > div {
+    background: #fff;
+    padding: 0 15px 15px 15px;
+    overflow: hidden;
+    margin:24px 0px 0px 0px ;
+
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+aside h2 {
+    clear: both;
+}
+aside h3 {
+    margin: 15px 0;
+    clear: left;
+}
+aside header .advanced {
+    margin: 0;
+}
+aside .column {
+    margin: 0 0 15px;
+    float: left;
+}
+aside .item {
+    margin: 3px 30px 0px 0;
+}
+.item {
+    font-size: 1.2em;
+    color: #8a8a8a;
+}
+.item input {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+aside .advanced {
+    margin: 10px 0 0;
+    float: right;
+}
+.account .selectBox {
+    cursor: pointer;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.account .dropDown {
+    background: #fff;
+    width: 280px; max-height: 140px;
+    margin: -1px 10px 0 5px;
+    border: 1px solid #d2d2d2;
+    overflow: auto;
+
+    position: absolute;
+}
+.account .dropDown li {
+    width: auto;
+    margin: 0;
+}
+
+/* INBOX ACCOUNT CSS
+---------------------------------------------------------*/
+#ainbox aside {
+    width: 315px;
+}
+#ainbox aside .right {
+    margin: -25px 0 0;
+    float: right;
+}
+#ainbox #received, #ainbox #sent {
+    background-position: 0 -305px;
+    width: 84px; height: 30px;
+    margin: 0;
+    float: left;
+    overflow: hidden;
+}
+#ainbox #received.active {
+    background-position: 0 -275px;
+    width: 96px;
+}
+#ainbox #sent {
+    background-position: -96px -275px;
+    width: 51px;
+}
+#ainbox #sent.active {
+    background-position: -84px -305px;
+    width: 63px;
+}
+#ainbox aside > div {
+    margin-top: -4px;
+
+    position: relative;
+}
+#ainbox aside ul {
+    margin: 10px -5px -5px;
+}
+#ainbox aside li {
+    background: #f2f2f2;
+    padding: 10px;
+    cursor: pointer;
+
+    position: relative;
+    z-index: 10;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #848484;
+}
+#ainbox aside li:hover {
+    background: #fd1382;
+
+    color: #fff;
+}
+#ainbox aside img {
+    float: left;
+}
+#ainbox aside p {
+    height: 60px;
+    margin: -5px 0 0 65px;
+    overflow: hidden;
+    line-height: 1.4em;
+
+    font-size: 11px;
+}
+#mchat .newmessage {
+    margin: 0 0 10px;
+    float: right;
+}
+#mchat div {
+    background: #fff;
+    padding: 15px;
+    clear: right;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#mchat .message {
+    margin: 0; padding-top: 20px;
+    overflow: hidden;
+
+    position: relative;
+}
+#mchat .message img {
+    margin: 0;
+}
+#mchat .date {
+    background: #f2f2f2;
+    padding: 5px 10px;
+    display: block;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    position: absolute;
+    top: 0; left: 110px;
+
+    color: #848484;
+}
+#mchat p {
+    background: #f2f2f2;
+    margin: 0 0 0 95px; padding: 5px;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #848484;
+    font-size: 12px;
+}
+#mchat .right .date {
+    right: 110px; left: auto;
+}
+#mchat .right img {
+    float: right;
+}
+#mchat .right p {
+    margin: 0 95px 0 0;
+}
+#mchat h2 {
+    margin: 10px 0;
+}
+.remove {
+    margin: 20px 10px 0;
+    float: right;
+
+    color: #f00;
+    font-size: 12px;
+    text-decoration: none;
+}
+#mchat textarea, #adescription textarea, #newmessagebox textarea {
+    background: #fff;
+    width: 585px; height: 100px;
+    margin: 10px 0; padding: 10px;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #848484;
+    font-size: 12px;
+}
+#mchat .buttons, .youraccount .buttons input {
+    background: none;
+    padding: 0;
+}
+#mchat .buttons input, .youraccount .buttons input, #newmessagebox .button {
+    background: #fd1382;
+    width: auto; height: auto;
+    margin: 0 0 0 auto; padding: 5px;
+
+    color: #fff;
+    text-indent: 0;
+}
+#newmessagebox {
+    background: #fff;
+    width: 570px;
+    margin: 15px 0 0;
+    display: none;
+
+    position: relative;
+    z-index: 9999;
+}
+#newmessagebox div {
+    margin: 10px 0;
+}
+#newmessagebox label {
+    display: block;
+
+    color: #848484;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+body #newmessagebox textarea {
+    width: 548px;
+}
+#newmessagebox .button {
+    border: none;
+}
+#newmessagebox h2 {
+    background: url(schooldate.jpg) no-repeat 0 -483px;
+    margin: -49px -10px 0 0; padding: 0 15px;
+    height: 30px;
+    float: right;
+    line-height: 27px;
+
+    border-radius: 0 3px 0 0;
+    -moz-border-radius: 0 3px 0 0;
+    -webkit-border-radius: 0 3px 0 0;
+
+    color: #fff;
+    font-family: "Bebas";
+    font-size: 1.3em;
+}
+#newmessagebox .colorfix {
+    background: #fff;
+    width: 100%; height: 10px;
+    margin: -25px -10px 0 0;
+    float: right;
+
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+#newmessagebox ul {
+    background: #fff;
+    margin: -1px 0 0 5px;
+    border: 1px solid #ddd; border-bottom: none;
+
+    position: absolute;
+}
+#newmessagebox li, .recipient {
+    width: 270px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+
+    color: #7f7f7f;
+    font-size: 1.3em;
+}
+#newmessagebox li img, .recipient img {
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+}
+.recipient {
+    background: #f2f2f2;
+    width: auto;
+    border: none;
+    cursor: default;    
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.recipient .remove {
+    cursor: pointer;
+
+    color: #2ab0d7;
+    font-weight: bold;
+}
+
+/* ACCOUNT ABOUT-ME CSS
+---------------------------------------------------------*/
+.youraccount h1 {
+    font-size: 2.2em;
+}
+.youraccount nav {
+    float: right;
+}
+.youraccount nav li {
+    float: left;
+}
+.youraccount nav a {
+    background: #1c1c1c;
+    height: 30px;
+    padding: 0 10px 0 20px;
+    display: block;
+
+    color: #fff;
+    font-family: "Bebas";
+    font-size: 1.5em;
+    text-decoration: none;
+    line-height: 24px;
+}
+.youraccount nav .first {
+    background: url(schooldate.jpg) no-repeat 0 -365px;
+}
+.youraccount nav .first.active {
+    background: url(schooldate.jpg) no-repeat 0 -335px;
+
+    color: #000;
+}
+.youraccount nav .active {
+    background: url(schooldate.jpg) no-repeat 0 -395px;
+
+    color: #000;
+}
+.youraccount nav .nextactive {
+    background: url(schooldate.jpg) no-repeat 0 -365px;
+}
+.youraccount nav .last {
+    border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+}
+.youraccount h2 {
+    font-size: 1.7em;
+}
+.youraccount > div {
+    background: #fff;
+    margin: 24px 0 0; padding: 20px 20px 0;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    position: relative;
+    z-index: 999;
+}
+.youraccount fieldset {
+    margin: 25px 0; padding: 0 0 25px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.youraccount form label {
+    width: 142px;
+
+    color: #7f7f7f;
+    font-size: 1.2em;
+}
+.youraccount input, #newmessagebox input {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#aabout .tzSelect {
+    width: 292px;
+    margin-left: 142px;
+}
+.youraccount .tzSelect div {
+    padding: 0 3px 0 8px;
+}
+.youraccount .selectBox {
+    margin: 0;
+}
+.youraccount .buttons {
+    width: 450px;
+    margin: -10px 0 0; padding: 0 0 20px;
+}
+.youraccount .buttons input {
+    padding: 5px 10px;
+    border: none;
+
+    font-size: 1.4em;
+}
+#aabout .szSmall {
+    width: 91px;
+    margin: 0 10px 0 0; padding: 0;
+    float: left;
+}
+.szSmall .selectBox {
+    width: auto;
+    margin: 0;
+}
+.szSmall .dropDown {
+    width: 79px;
+}
+#aabout h1 {
+    margin: 0;#
+}
+
+/* ACCOUNT DESCRIPTION CSS
+---------------------------------------------------------*/
+h1 {
+    margin: 0 0 30px;
+}
+.youraccount p {
+    color: #7f7f7f;
+    font-size: 1.2em;
+}
+.youraccount form div {
+    padding: 0;
+}
+#adescription label, form .checkbox label {
+    display: inline;
+    float: none;
+}
+#adescription form label, form .checkbox label {
+    width: auto;
+    vertical-align: middle;
+}
+#adescription input, form .checkbox input {
+    width: auto; height: auto;
+    margin: 0 10px 0 0; padding: 0;
+    vertical-align: middle;
+    display: inline;
+}
+#adescription textarea, #newmessagebox textarea {
+    width: 868px;
+    border: 1px solid #d2d2d2;
+}
+#adescription .buttons {
+    width: 100%;
+}
+#adescription .button {
+    padding: 5px 10px;
+    float: right;
+}
+
+.columns {
+    padding: 0;
+    overflow: hidden;
+}
+.youraccount .columns div {
+    padding: 0;
+}
+.columns .col3 {
+    width: 33%;
+    float: left;
+}
+.columns .col4 {
+    width: 25%;
+    float: left;
+}
+
+/* ACCOUNT SETTINGS CSS
+---------------------------------------------------------*/
+#asettings .buttons {
+    width: 100%;
+    margin: 10px 0 0;
+}
+#asettings .button {
+    float: right;
+}
+#asettings .disable {
+    margin: 0 10px 0 0;
+    float: left;
+}
+#asettings .black {
+    background: #000;
+}
+
+/* PROFILE CSS
+---------------------------------------------------------*/
+#aprofile {
+    overflow: hidden;
+}
+#aprofile aside {
+    width: 320px;
+    float: left;
+
+    position: static;
+}
+#profile {
+    margin-left: 350px;
+}
+#aprofile h2, #profile h1 {
+    font-size: 1.7em;
+}
+#aprofile aside div {
+    margin: 10px 0; padding: 10px;
+}
+
+#aprofile .slideshow {
+    margin: 10px 0 0; padding: 0;
+}
+#aprofile .slideshow a {
+    margin: 0 5px 0 0;
+}
+
+#aprofile ul {
+    margin: 10px 0;
+}
+#aprofile li {
+    margin: 8px 0;
+    clear: left;
+
+    color: #7f7f7f;
+    font-size: 1.2em;
+}
+#aprofile label {
+    width: 120px;
+    display: block;
+    float: left;
+}
+
+#profile div {
+    background: #fff;
+    margin: 10px 0;
+    overflow: hidden;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #7f7f7f;
+}
+#profile .message .tag {
+    background-image: url(schooldate.jpg);
+}
+#profile h1 {
+    margin: 15px 10px;
+    float: left;
+}
+#profile .right {
+    margin: 10px;
+    float: right;
+}
+#profile a.message, #profile .addfriend, #profile .chat, #profile .videochat {
+    background: url(schooldate.jpg) no-repeat 0 -425px;
+    width: 98px; height: 29px;
+    margin: 0 0 0 5px;
+    display: block;
+    float: left;
+    text-indent: -9999px;
+}
+#profile .addfriend {
+    background-position: 0 -454px;
+    width: 129px;
+}
+#profile .chat {
+    background-position: -128px -454px;
+    width: 71px;
+}
+#profile .videochat {
+    background-position: -98px -425px;
+    width: 110px;
+}
+#profile div h2 {
+    margin: 10px 10px 0;
+}
+#profile div.message {
+    margin-top: 0; padding: 10px;
+}
+#profile .quote {
+    padding: 0 0 0 25px;
+}
+#profile .edit {
+    margin: 10px 0 0;
+    float: right;
+}
+#profile  p, #profile .columns {
+    padding: 10px;
+    line-height: 1.5em;
+
+    font-size: 1.2em
+}
+#profile .columns {
+    padding: 0 10px;
+}
+
+/* AJAX CSS
+---------------------------------------------------------*/
+.loading {
+    background: url(loading.gif) no-repeat;
+    margin: 6px 0 0; padding: 0 5px 3px 25px;
+    line-height: 16px;
+
+    color: #000 !important;
+    font-size: 12px;
+}
+
+/* JGROWL CSS
+---------------------------------------------------------*/
+div.jGrowl{z-index:9999;color:#fff;font-size:12px}div.ie6{position:absolute}div.ie6.top-right{right:auto;bottom:auto;left:expression( ( 0 - jGrowl.offsetWidth+( document.documentElement.clientWidth ? document.documentElement.clientWidth:document.body.clientWidth )+( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft:document.body.scrollLeft ) )+'px' );top:expression( ( 0+( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop:document.body.scrollTop ) )+'px' )}div.ie6.top-left{left:expression( ( 0+( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft:document.body.scrollLeft ) )+'px' );top:expression( ( 0+( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop:document.body.scrollTop ) )+'px' )}div.ie6.bottom-right{left:expression( ( 0 - jGrowl.offsetWidth+( document.documentElement.clientWidth ? document.documentElement.clientWidth:document.body.clientWidth )+( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft:document.body.scrollLeft ) )+'px' );top:expression( ( 0 - jGrowl.offsetHeight+( document.documentElement.clientHeight ? document.documentElement.clientHeight:document.body.clientHeight )+( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop:document.body.scrollTop ) )+'px' )}div.ie6.bottom-left{left:expression( ( 0+( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft:document.body.scrollLeft ) )+'px' );top:expression( ( 0 - jGrowl.offsetHeight+( document.documentElement.clientHeight ? document.documentElement.clientHeight:document.body.clientHeight )+( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop:document.body.scrollTop ) )+'px' )}div.ie6.center{left:expression( ( 0+( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft:document.body.scrollLeft ) )+'px' );top:expression( ( 0+( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop:document.body.scrollTop ) )+'px' );width:100%}div.jGrowl{position:absolute}body >div.jGrowl{position:fixed}div.jGrowl.top-left{left:0px;top:0px}div.jGrowl.top-right{right:0px;top:0px}div.jGrowl.bottom-left{left:0px;bottom:0px}div.jGrowl.bottom-right{right:0px;bottom:0px}div.jGrowl.center{top:0px;width:50%;left:25%}div.center div.jGrowl-notification,div.center div.jGrowl-closer{margin-left:auto;margin-right:auto}div.jGrowl div.jGrowl-notification,div.jGrowl div.jGrowl-closer{background-color:#000;opacity:.85;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=85);zoom:1;width:235px;padding:10px;margin-top:5px;margin-bottom:5px;font-family:Tahoma,Arial,Helvetica,sans-serif;font-size:1em;text-align:left;display:none;-moz-border-radius:5px;-webkit-border-radius:5px}div.jGrowl div.jGrowl-notification{min-height:40px}div.jGrowl div.jGrowl-notification,div.jGrowl div.jGrowl-closer{margin:10px}div.jGrowl div.jGrowl-notification div.jGrowl-header{font-weight:bold;font-size:1em}div.jGrowl div.jGrowl-notification div.jGrowl-close{z-index:99;float:right;font-weight:bold;font-size:1em;cursor:pointer}div.jGrowl div.jGrowl-closer{padding-top:4px;padding-bottom:4px;cursor:pointer;font-size:.9em;font-weight:bold;text-align:center}@media print{div.jGrowl{display:none}}
+div.jGrowl div.success {
+    background-color: #ffd000;
+ 
+    color: #0D2054;
+}
+
+/* STICKY FOOTER CSS
+---------------------------------------------------------*/
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 0 -105px;
+}
+footer,.sticky {
+    height: 105px;
+}
+
+/* FOOTER CSS
+---------------------------------------------------------*/
+footer {
+    background: #000;
+    margin: 25px 0 0;
+    overflow: hidden;
+
+    position: relative;
+
+    color: #929393;
+}
+footer .logo {
+    background-position: 0 -76px;
+    width: 145px; height: 32px;
+    margin: 10px 20px;
+}
+footer p {
+    margin: 10px 0 20px 20px;
+}
+footer .right {
+    position: absolute;
+    top: 10px; right: 0;
+}
+footer li {
+    margin: 0 9px;
+    float: left;
+
+    font-size: 1.1em;
+}
+footer a {
+    color: #929393;
+    text-decoration: none;
+}
+.facebook, .twitter {
+    background-position: -145px -76px;
+    width: 20px; height: 21px;
+    margin: 8px 8px 0 0;
+    float: right;
+}
+.twitter {
+    background-position: -165px -76px;
+}
+
+/*------------------------ ERROL'S SEARCH FORM -------------- */
+/*
+#qform {
+
+      padding-bottom:5px;
+      padding-top:5px;
+    }
+    
+    
+#q {
+	text-align:left;
+	display:block;
+	height:30px;
+	background:#fff;
+	border: 1px solid #63c5e2;
+	font-size:14px;
+	font-weight:700;
+	color:#848484;
+	width:370px;
+	padding:0 5px;
+
+	margin-top:0px;
+
+
+}
+
+*/
+
+#spinner {
+    opacity: 0.5;
+    height:16px;
+    width:16px;
+}
+
+.nofound{
+    padding: 5px;
+    color: #9c9c9c;
+    font-size: 16px;
+}
+
+div.sortomatic #sortsearch input.search_input {
+    border: 3px solid #CFCEC3;
+    color: #969696;
+    font: 11px verdana,serif;
+    padding: 2px;
+    width: 300px;
+    height:16px;
+
+}
+
+
+input, textarea, select, object {
+    outline: 0 none;
+}
+
+.blue_button {
+    background: none repeat scroll 0 0 #59A5D1;
+    border: 1px solid #408BB6;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    font: 11px verdana,sans-serif;
+    padding: 3px 10px;
+}
+
+div.sortomatic {
+	float:right;
+    background: #fff;
+    border: 1px solid #E4E4DE;
+    height: 25px;
+    width:584px;
+    margin: 0 0 10px;
+    padding: 10px;
+}
+
+.fbProfileBrowserViewButtons .profileBrowserViewButton .customimg {
+    margin-top: 2px;
+}
+
+.uiButtonNoText .img {
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.uiButton .customimg {
+    margin-top: 0;
+}
+
+.uiButton .img {
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+.sx_1723d0 {
+    background-position: -76px -181px;
+}
+
+.sx_524cda {
+    background-position: -58px -181px;
+}
+
+.sp_d064zr {
+    background-image: url("5m16xRDPVSk.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    width: 9px;
+    cursor: pointer;
+    margin-top:4px;
+}
+
+.mrs {
+    margin-right: 5px;
+}
+
+.ff4.mac .uiButton {
+    line-height: 14px;
+}
+
+.fbProfileBrowserViewButtons .normal {
+    border-right: 0 none;
+}
+
+.fbProfileBrowserViewButtons .profileBrowserViewButton {
+    margin-left: 0;
+}
+
+.uiButton, .uiButtonSuppressed:active, .uiButtonSuppressed:focus, .uiButtonSuppressed:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #EEEEEE;
+    background-image: url("5m16xRDPVSk.png");
+    background-position: 0 -49px;
+    background-repeat: no-repeat;
+    border-color: #999999 #999999 #888888;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 5px;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+label {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.async_saving .uiButton, .async_saving .uiButton .uiButtonText, .async_saving .uiButton input, .uiButtonDepressed, .uiButtonDepressed .uiButtonText, .uiButtonDepressed input, .uiButtonDisabled, .uiButtonDisabled .uiButtonText, .uiButtonDisabled input {
+    cursor: default;
+}
+
+.uiButton:active, .uiButtonDepressed {
+    background: none repeat scroll 0 0 #DDDDDD;
+    border-bottom-color: #999999;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.uiButton, .uiButtonSuppressed:active, .uiButtonSuppressed:focus, .uiButtonSuppressed:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #EEEEEE;
+    background-image: url("5m16xRDPVSk.png");
+    background-position: 0 -49px;
+    background-repeat: no-repeat;
+    border-color: #999999 #999999 #888888;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 5px;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+  
+}
+
+element.style {
+    background-color: #FFFFFF;
+    border-radius: 10px 10px 10px 10px;
+}
+#muadib, .so_soft, #mystuff, #discover {
+    padding: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.column {
+    color: #3E3E3E;
+    font-size: 11px;
+}
+
+#everything {
+    text-align: left;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+.clip_stream li.clip {
+    border-top: 1px dotted #BEBABB;
+    margin: 10px 10px 0;
+    padding-top: 11px;
+    position: relative;
+    width: 560px;
+}
+
+li {
+    list-style-type: none;
+}
+
+a, a:link, a:visited, a:active, .faux_link {
+    color: #2786C2;
+    cursor: pointer;
+    outline: medium none;
+    text-decoration: none;
+}
+
+
+.clip_stream li.clip .digest {
+    float: left;
+    overflow: hidden;
+    width: 425px;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    visibility: hidden;
+}
+
+.clip_stream li.clip .thumbnail {
+    float: left;
+    height: 85px;
+    margin-right: 10px;
+    width: 85px;
+}
+
+img {
+    border: 0 none;
+}
+
+.clip_stream li.clip .digest h3 {
+    font: bold 16px arial,sans-serif;
+    width: 390px;
+}
+
+h1, h2, h3 {
+    font-family: arial,sans-serif;
+}
+
+a, a:link, a:visited, a:active, .faux_link {
+    color: #2786C2;
+    cursor: pointer;
+    outline: medium none;
+    text-decoration: none;
+}
+
+.clip_stream li.clip .digest h3 {
+    font: bold 16px arial,sans-serif;
+}
+
+.clip_stream li.clip .digest .byline {
+    color: #969696;
+    line-height: 18px;
+}
+
+.clip_stream li.clip .digest .description {
+    line-height: 16px;
+    padding-top: 2px;
+}
+
+.clip_stream li.clip .digest .stats {
+    padding-top: 2px;
+}
+
+span.plays {
+    background: url("stat_play.gif") no-repeat scroll 0 3px transparent;
+    margin-right: 5px;
+    padding-left: 15px;
+}
+
+span.likes, span.comments, span.plays {
+    color: #969696;
+    line-height: 18px;
+}
+
+span.likes {
+    background: url("stat_heart.gif") no-repeat scroll 0 2px transparent;
+    margin-right: 5px;
+    padding-left: 15px;
+}
+
+span.comments {
+    background: url("stat_comment.gif") no-repeat scroll 0 3px transparent;
+    margin-right: 5px;
+    padding-left: 15px;
+}
+
+
+.toobar div.dropdown {
+    float: left;
+    margin: 0 10px 0 0;
+    width: 120px;
+}
+
+div.dropdown {
+    background: url("browser_dropdown_bg.gif") no-repeat scroll right top #FFFFFF;
+    border: 3px solid #CFCEC3;
+    color: #2786C2;
+    cursor: pointer;
+    height: 12px;
+    line-height: 12px;
+    margin: 0 20px 10px;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.dropdown_items {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color #CFCEC3 #CFCEC3;
+    border: 3px solid #CFCEC3;
+    border-style: none solid solid;
+    border-width: 0 3px 3px;
+    cursor: pointer;
+}
+
+.dropdown_items * {
+    cursor: pointer;
+}
+
+.dropdown_items ul li {
+    color: #2786C2;
+    font-size: 11px;
+    padding: 5px 4px;
+}
+
+.hilite {
+    background-color: #E5F2F6;
+}
+
+
+#navli {
+
+color: #FFFFFF;
+
+}
+
+#checkallbox {
+padding-top:5px;
+}
+
+#suggestions {
+background: none;
+}
